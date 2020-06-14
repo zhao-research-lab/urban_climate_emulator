@@ -120,70 +120,7 @@ for (rcp in RCP) {
   df_m_RH2MU_full_cv <- data.frame(LAT = urban_lat,
                                    LON = urban_lon,
                                    RMSE = c(m_RH2MU_full_cv ))
-  # Map RMSE
-  cat("************** Mapping RMSE ..........", sep='\n')
-  map.world <- map_data(map = "world")
-  # Mapping TSA_U
-  p<-ggplot(map.world, aes(x = long, y = lat)) + xlim(-180, 180) +
-    geom_polygon(aes(group = group), fill = "lightgrey", colour = "gray") +
-    theme(text= element_text(size = 16), legend.position="bottom") +
-    xlab(expression(paste("Longitude ("^"o",")"))) +
-    ylab(expression(paste("Latitude ("^"o",")"))) +
-    geom_point(data = df_m_full_cv, aes(x = LON, y = LAT, colour = RMSE), size = .5) +
-    scale_color_distiller(name = "RMSE in T (K)",
-                          palette = "RdYlBu",
-                          limits = c(0, 0.7),
-                          labels = c("0", "", ".2", "", ".4", "", ".6"),
-                          breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6)) +
-    coord_fixed(ratio = 1)
-  map_output<-paste0('TSA_U_RMSE_map_', rcp, '.pdf')
-  ggsave(map_output)
-  # Mapping Tmax_U
-  p<-ggplot(map.world, aes(x = long, y = lat)) + xlim(-180, 180) +
-    geom_polygon(aes(group = group), fill = "lightgrey", colour = "gray") +
-    theme(text= element_text(size = 16), legend.position="bottom") +
-    xlab(expression(paste("Longitude ("^"o",")"))) +
-    ylab(expression(paste("Latitude ("^"o",")"))) +
-    geom_point(data = df_m_TmaxU_full_cv, aes(x = LON, y = LAT, colour = RMSE), size = .5) +
-    scale_color_distiller(name = "RMSE in T (K)",
-                          palette = "RdYlBu",
-                          limits = c(0, 0.7),
-                          labels = c("0", "", ".2", "", ".4", "", ".6"),
-                          breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6)) +
-    coord_fixed(ratio = 1)
-  map_output<-paste0('TmaxU_RMSE_map_', rcp, '.pdf')
-  ggsave(map_output)
-  # Mapping Tmin_U
-  p<-ggplot(map.world, aes(x = long, y = lat)) + xlim(-180, 180) +
-    geom_polygon(aes(group = group), fill = "lightgrey", colour = "gray") +
-    theme(text= element_text(size = 16), legend.position="bottom") +
-    xlab(expression(paste("Longitude ("^"o",")"))) +
-    ylab(expression(paste("Latitude ("^"o",")"))) +
-    geom_point(data = df_m_TminU_full_cv, aes(x = LON, y = LAT, colour = RMSE), size = .5) +
-    scale_color_distiller(name = "RMSE in T (K)",
-                          palette = "RdYlBu",
-                          limits = c(0, 0.7),
-                          labels = c("0", "", ".2", "", ".4", "", ".6"),
-                          breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6)) +
-    coord_fixed(ratio = 1)
-  map_output<-paste0('TminU_RMSE_map_', rcp, '.pdf')
-  ggsave(map_output)
-  # Mapping RH2M_U
-  p<-ggplot(map.world, aes(x = long, y = lat)) + xlim(-180, 180) +
-    geom_polygon(aes(group = group), fill = "lightgrey", colour = "gray") +
-    theme(text= element_text(size = 16), legend.position="bottom") +
-    xlab(expression(paste("Longitude ("^"o",")"))) +
-    ylab(expression(paste("Latitude ("^"o",")"))) +
-    geom_point(data = df_m_RH2MU_full_cv, aes(x = LON, y = LAT, colour = RMSE), size = .5) +
-    scale_color_distiller(name = "RMSE in RH (%)",
-                          palette = "RdYlBu",
-                          limits = c(0, 3),
-                          labels = c("0", "1", "2", "3"),
-                          breaks = c(0, 1, 2, 3)) +
-    coord_fixed(ratio = 1)
-  map_output<-paste0('RH2MU_RMSE_map_', rcp, '.pdf')
-  ggsave(map_output)
-  rm(list=c("m_full_list", "map.world", "urban_list", "m_full_cv", "urban_lat", "urban_lon"))
+  rm(list=c("m_full_list", "urban_list", "m_full_cv", "urban_lat", "urban_lon"))
   gc()
 }
 
